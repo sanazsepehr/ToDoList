@@ -1,16 +1,14 @@
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Task {
 
     private String title;
-    private Date dueDate;
+    private LocalDate dueDate;
     private String projectName;
     private Boolean isDone = false;
-
-
 
 
     public Task ()
@@ -19,21 +17,22 @@ public class Task {
         System.out.println("Please Enter Task title:");
         title = scanner.nextLine();
 
-        System.out.println("Please Enter Task date: (dd/MM/YYYY hh:mm)");
+        System.out.println("Please Enter Task date: (dd/MM/yyyy HH:mm)");
         Boolean success = false;
         do {
             try {
-                scanner.next();
-                dueDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(scanner.nextLine());
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                dueDate = LocalDate.parse(scanner.next(), formatter);
                 success = true;
 
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 System.out.println("Please Enter date in correct format!");
             }
         }
         while (success == false);
 
-        System.out.println("Please Enter project name");
+        System.out.println("Please Enter project name:");
+        scanner.next();
         projectName = scanner.next();
     }
 
@@ -42,7 +41,7 @@ public class Task {
         return this.title;
     }
 
-    public Date getDueDate()
+    public LocalDate getDueDate()
     {
         return this.dueDate;
     }
@@ -64,7 +63,7 @@ public class Task {
         this.title = title;
     }
 
-    public void setDueDate(Date dueDate)
+    public void setDueDate(LocalDate dueDate)
     {
         this.dueDate = dueDate;
     }
@@ -78,4 +77,12 @@ public class Task {
     {
         this.isDone = isDone;
     }
+
+
+    // Task is an object. If I want to print my object I need to convert my object to String.
+    public String toString()
+    {
+    return (title + dueDate + isDone + projectName);
+    }
+
 }
