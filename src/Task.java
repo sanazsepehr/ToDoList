@@ -1,7 +1,5 @@
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 
 public class Task {
 
@@ -10,30 +8,17 @@ public class Task {
     private String projectName;
     private Boolean isDone = false;
 
-
-    public Task ()
+    /**
+     *
+     * @param title
+     * @param dueDate
+     * @param projectName
+     */
+    public Task(String title, LocalDate dueDate, String projectName)
     {
-        Scanner scanner = new Scanner (System.in);
-        System.out.println("Please Enter Task title:");
-        title = scanner.nextLine();
-
-        System.out.println("Please Enter Task date: (dd/MM/yyyy HH:mm)");
-        Boolean success = false;
-        do {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                dueDate = LocalDate.parse(scanner.next(), formatter);
-                success = true;
-
-            } catch (Exception e) {
-                System.out.println("Please Enter date in correct format!");
-            }
-        }
-        while (success == false);
-
-        System.out.println("Please Enter project name:");
-        scanner.next();
-        projectName = scanner.next();
+        this.title = title;
+        this.dueDate = dueDate;
+        this.projectName = projectName;
     }
 
     public String getTitle()
@@ -57,7 +42,10 @@ public class Task {
     }
 
 
-
+    /**
+     *
+     * @param title
+     */
     public void setTitle(String title)
     {
         this.title = title;
@@ -82,7 +70,19 @@ public class Task {
     // Task is an object. If I want to print my object I need to convert my object to String.
     public String toString()
     {
-    return (title + dueDate + isDone + projectName);
+        //TODO convert duedate and the boolean to a string and and seperator between them "=="
+        //TODO read this again
+        //Convert the local date to String
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String date = formatter.format(dueDate);
+
+        String status;
+        if (isDone == true)
+            status = "done";
+        else
+            status = "notDone";
+
+        return title + "  " + date + "  " + isDone + "  "+ projectName;
     }
 
 }
