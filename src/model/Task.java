@@ -61,7 +61,7 @@ public class Task implements Serializable {
 
     public void setStatus(String status)
     {
-        this.status = "Done";
+        this.status = status;
     }
 
     public String toString()
