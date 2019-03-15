@@ -1,6 +1,6 @@
 # app.ToDoList
 
-<p>Class Diagram</p>
+<h3>Class Diagram</h3>
 
 <img src="Untitled.png"
      alt="Markdown Monster icon"
