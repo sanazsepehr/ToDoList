@@ -1,5 +1,6 @@
 package app;
 
+import helper.FileHandling;
 import model.Task;
 
 import java.io.*;
@@ -8,15 +9,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.lang.String;
 
-public class ToDoList implements Serializable {
+public class ToDoList {
 
     private ArrayList<Task> taskList;
-    private static final long serialVersionUID=1L;
+    private String userName;
+    //private static final long serialVersionUID=1L;
+
 
     public ToDoList()
     {
-        taskList= new ArrayList<>();
+        taskList= FileHandling.openFile();
     }
+
+
+
+
+
+
 
     public void addToTaskList(Task t)
     {
@@ -28,6 +37,7 @@ public class ToDoList implements Serializable {
         return taskList;
     }
 
+    //TODO why this
      public void printTaskListByIndex()
      {
         for (int i = 0; i < taskList.size() ; i++)
@@ -52,8 +62,11 @@ public class ToDoList implements Serializable {
         {
             if (projectName.equals(t.getProjectName())){
                 found=true;
+                break;
+                //TODO have break maybe.
             }
         }
+
         if (found)
         {
             taskList.stream()
@@ -70,6 +83,7 @@ public class ToDoList implements Serializable {
         return taskList.get(index);
     }
 
+    //TODO and this?
     public void printTaskByIndex(int index)
     {
         System.out.println(getTaskByIndex(index));
@@ -77,7 +91,6 @@ public class ToDoList implements Serializable {
 
     public void updateTaskTitle(int index, String newTitle)
     {
-
         getTaskByIndex(index).setTitle(newTitle);
     }
 
@@ -118,6 +131,7 @@ public class ToDoList implements Serializable {
         int sizeCounter = taskList.size();
         return sizeCounter;
     }
+
 }
 
 

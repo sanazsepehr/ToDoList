@@ -55,8 +55,11 @@ public class Validation {
         }
     }
 
+    //TODO why?? you can combine this with the choiceValidation method
     public static int indexValidation(int listSize)
     {
+
+        //return choiceValidation(0, listSize);
         int indexToValidate = 0;
         Boolean successful = false;
         while (!successful)
@@ -64,7 +67,7 @@ public class Validation {
             try {
                 String strChoice = scanner.nextLine();
                 int choice = Integer.parseInt(strChoice);
-                if (choice < listSize) {
+                if (choice >= 0 && choice < listSize) {
                     indexToValidate = choice;
                     successful = true;
                 } else {

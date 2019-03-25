@@ -18,14 +18,8 @@ public class UserInterface {
     public UserInterface()
     {
         open = true;
-        try {
-            Object objectFromFile = FileHandling.openFile();
-            if (objectFromFile instanceof ToDoList){
-                toDoList = (ToDoList) objectFromFile;
-            }
-        } catch (FileNotFoundException f) {
-            System.out.println("File not found. New file created");
-        }
+        //toDoList =  FileHandling.openFile()
+
     }
 
     public void welcome()
@@ -52,7 +46,7 @@ public class UserInterface {
         while (open) {
             showDone();
             welcome();
-           try {
+           try {  //TODO why try, catch?
                int min = 1;
                int max = 4;
                int choice = Validation.choiceValidation(min, max);
@@ -71,7 +65,7 @@ public class UserInterface {
                        open = false;
                        System.out.println("Goodbye! ;) ");
                        break;
-                   default:
+
                }
            } catch (InputMismatchException e) {
                    System.out.println("<<< It is invalid choice!! >>>");
@@ -101,7 +95,7 @@ public class UserInterface {
                 toDoList.printTaskListOrderedByDate();
                 returnToMainMenu();
                 break;
-            case 3:
+            case 3: //TODO little duplicate in the print thing
                 System.out.println(" <<<Please enter project name: >>>");
                 String projectName = scanner.nextLine();
                 System.out.println("==========================================================================================");
@@ -187,8 +181,8 @@ public class UserInterface {
             int min = 1;
             int max = 5;
             int choice = Validation.choiceValidation(min, max);
-            try {
-                switch (choice) {
+            try { // why try and catch
+                switch (choice) { //TODO nice.
                     case 1: {
 
                         System.out.println("Please Enter new Title:");
@@ -222,7 +216,7 @@ public class UserInterface {
                         updatingDone = true;
                         break;
                     }
-                    default:
+                    //default: // todo can you have a break
                 }
             } catch (InputMismatchException e)
             {
@@ -258,6 +252,9 @@ public class UserInterface {
         System.out.printf("%-10s%-20s%-20s%-20s%20s", "INDEX", "TITLE", "DUE DATE", "PROJECT NAME", "STATUS");
         System.out.println();
         System.out.println("==========================================================================================");
+
+        //toDoList.printTaskListByIndex();
+
         int index=0;
 
         for (Task task: list)

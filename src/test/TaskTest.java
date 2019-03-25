@@ -1,6 +1,5 @@
 package test;
 import model.Task;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +57,7 @@ public class TaskTest {
     @Test
     void setDueDateTest() {
         LocalDate date = LocalDate.now();
-        task.setDueDate(date);
+        task.setDueDate(date); //TODO the date already were local.now
         assertEquals(date,task.getDueDate());
     }
 
