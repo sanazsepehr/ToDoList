@@ -3,11 +3,9 @@ import helper.FileHandling;
 import helper.Validation;
 import model.Task;
 import java.lang.String;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class UserInterface {
 
@@ -18,8 +16,6 @@ public class UserInterface {
     public UserInterface()
     {
         open = true;
-        //toDoList =  FileHandling.openFile()
-
     }
 
     public void welcome()
@@ -43,14 +39,16 @@ public class UserInterface {
 
     public void mainMenu()
     {
-        while (open) {
+        while (open)
+        {
             showDone();
             welcome();
-           try {  //TODO why try, catch?
+
                int min = 1;
                int max = 4;
                int choice = Validation.choiceValidation(min, max);
-               switch (choice) {
+               switch (choice)
+               {
                    case 1:
                         showListMenu();
                        break;
@@ -67,10 +65,16 @@ public class UserInterface {
                        break;
 
                }
-           } catch (InputMismatchException e) {
-                   System.out.println("<<< It is invalid choice!! >>>");
-           }
         }
+    }
+
+    private void printHeader()
+    {
+        System.out.println("==========================================================================================");
+        System.out.printf("%-10s%-20s%-20s%20s", "TITLE", "DUE DATE", "PROJECT NAME", "STATUS");
+        System.out.println();
+        System.out.println("==========================================================================================");
+
     }
 
     private void showListMenu()
@@ -88,26 +92,21 @@ public class UserInterface {
                 returnToMainMenu();
                 break;
             case 2:
-                System.out.println("==========================================================================================");
-                System.out.printf("%-10s%-20s%-20s%20s", "TITLE", "DUE DATE", "PROJECT NAME", "STATUS");
-                System.out.println();
-                System.out.println("==========================================================================================");
+                printHeader();
                 toDoList.printTaskListOrderedByDate();
                 returnToMainMenu();
                 break;
-            case 3: //TODO little duplicate in the print thing
+            case 3:
                 System.out.println(" <<<Please enter project name: >>>");
                 String projectName = scanner.nextLine();
-                System.out.println("==========================================================================================");
-                System.out.printf("%-10s%-20s%20s", "TITLE", "DUE DATE", "STATUS");
-                System.out.println();
-                System.out.println("==========================================================================================");
+                printHeader();
                 toDoList.printTaskListFilteredByProjectName(projectName);
                 returnToMainMenu();
                 break;
             default:
         }
     }
+
 
     private void showEditMenu()
     {
@@ -174,15 +173,16 @@ public class UserInterface {
     {
         System.out.println(">>> Please choose task index to update from list <<<");
         printFormattedTaskList();
-        int index = Validation.indexValidation(toDoList.getTaskListSize());
+        int index = Validation.choiceValidation(0, toDoList.getTaskListSize());
         Boolean updatingDone = false;
-        while (!updatingDone) {
+        while (!updatingDone)
+        {
             System.out.println("Choose Option: 1 = Title, 2 = Date , 3 = Project Name, 4 = Status, 5 = Updating done");
             int min = 1;
             int max = 5;
             int choice = Validation.choiceValidation(min, max);
-            try { // why try and catch
-                switch (choice) { //TODO nice.
+
+                switch (choice) {
                     case 1: {
 
                         System.out.println("Please Enter new Title:");
@@ -216,12 +216,7 @@ public class UserInterface {
                         updatingDone = true;
                         break;
                     }
-                    //default: // todo can you have a break
                 }
-            } catch (InputMismatchException e)
-            {
-                System.out.println(" It is invalid :");
-            }
         }
     }
 
@@ -235,7 +230,7 @@ public class UserInterface {
                 printFormattedTaskList();
                 System.out.println("----------------------------------------------------------------------------------");
                 System.out.println("<<<<<< Please choose task index to remove from list : >>>>>>>");
-                int index = Validation.indexValidation(toDoList.getTaskListSize());
+                int index = Validation.choiceValidation(0, toDoList.getTaskListSize());
                 toDoList.removeTaskByIndex(index);
                 showList();
             } catch (NumberFormatException e) {
@@ -252,8 +247,6 @@ public class UserInterface {
         System.out.printf("%-10s%-20s%-20s%-20s%20s", "INDEX", "TITLE", "DUE DATE", "PROJECT NAME", "STATUS");
         System.out.println();
         System.out.println("==========================================================================================");
-
-        //toDoList.printTaskListByIndex();
 
         int index=0;
 

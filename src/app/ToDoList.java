@@ -21,12 +21,6 @@ public class ToDoList {
         taskList= FileHandling.openFile();
     }
 
-
-
-
-
-
-
     public void addToTaskList(Task t)
     {
         taskList.add(t);
@@ -36,16 +30,6 @@ public class ToDoList {
     {
         return taskList;
     }
-
-    //TODO why this
-     public void printTaskListByIndex()
-     {
-        for (int i = 0; i < taskList.size() ; i++)
-        {
-            System.out.println( i + ": " + taskList.get(i));
-        }
-     }
-
 
 
      public void printTaskListOrderedByDate()
@@ -63,7 +47,6 @@ public class ToDoList {
             if (projectName.equals(t.getProjectName())){
                 found=true;
                 break;
-                //TODO have break maybe.
             }
         }
 
@@ -71,7 +54,7 @@ public class ToDoList {
         {
             taskList.stream()
                     .filter(x -> x.getProjectName().equals(projectName))
-                    .forEach(task -> System.out.format("%-10s%-20s%20s\n", task.getTaskName(), task.getDueDate(),task.getStatus()));
+                    .forEach(task -> System.out.format("%-10s%-20s%-20s%20s\n", task.getTaskName(), task.getDueDate(),task.getProjectName(),task.getStatus()));
         }
         else{
             System.out.println(projectName+" Doesn't Exist");
@@ -83,11 +66,6 @@ public class ToDoList {
         return taskList.get(index);
     }
 
-    //TODO and this?
-    public void printTaskByIndex(int index)
-    {
-        System.out.println(getTaskByIndex(index));
-    }
 
     public void updateTaskTitle(int index, String newTitle)
     {
@@ -111,7 +89,7 @@ public class ToDoList {
 
     public void removeTaskByIndex(int index)
     {
-      taskList.remove(index);        //iterator it = taskList.iterator();Test
+      taskList.remove(index);
     }
 
     public long countTodo()

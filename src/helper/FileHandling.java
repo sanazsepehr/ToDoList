@@ -9,7 +9,8 @@ public  class FileHandling {
 
         public static void saveFile(ToDoList t){
             try {
-                FileOutputStream fos = new FileOutputStream("data");
+                File file = new File("data");
+                FileOutputStream fos = new FileOutputStream(file);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(t.getTaskList());
                 oos.close();
@@ -22,7 +23,6 @@ public  class FileHandling {
 
         public static ArrayList<Task> openFile()
         {
-            File f = new File("data");
             ArrayList<Task> objectFromFile = new ArrayList<>();
 
             try {

@@ -55,31 +55,6 @@ public class Validation {
         }
     }
 
-    //TODO why?? you can combine this with the choiceValidation method
-    public static int indexValidation(int listSize)
-    {
-
-        //return choiceValidation(0, listSize);
-        int indexToValidate = 0;
-        Boolean successful = false;
-        while (!successful)
-        {
-            try {
-                String strChoice = scanner.nextLine();
-                int choice = Integer.parseInt(strChoice);
-                if (choice >= 0 && choice < listSize) {
-                    indexToValidate = choice;
-                    successful = true;
-                } else {
-                    System.out.println("Index does not exist. Please choose a correct index:");
-                }
-            } catch (Exception e){
-                System.out.println("The input is invalid");
-            }
-        }
-         return indexToValidate;
-    }
-
     public static String inputValidation()
     {
         String input = null;

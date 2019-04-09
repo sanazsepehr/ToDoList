@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,9 +57,12 @@ public class TaskTest {
 
     @Test
     void setDueDateTest() {
-        LocalDate date = LocalDate.now();
-        task.setDueDate(date); //TODO the date already were local.now
-        assertEquals(date,task.getDueDate());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date2 = LocalDate.parse("22/02/2020", formatter);
+
+        task.setDueDate(date2);
+        assertEquals(date2,task.getDueDate());
     }
 
     @Test
