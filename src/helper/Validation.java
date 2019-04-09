@@ -7,7 +7,11 @@ import java.lang.String;
 public class Validation {
     private static Scanner scanner = new Scanner(System.in);
 
-
+    /**
+     * validate date
+     * @param dateToBeValidated
+     * @return
+     */
     public static LocalDate dateValidation(String dateToBeValidated) {
         LocalDate dueDate = null;
         Boolean success = false;
